@@ -1,0 +1,28 @@
+# @name login
+POST {{url}}/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "id": aa
+}
+
+> {%
+    client.log(response.body.data);
+
+    client.global.set("auth_token", response.body.data);
+%}
+
+###
+# @name get student
+GET {{url}}/api/v1/student
+Authorization: {{auth_token}}
+
+###
+# @name logout
+POST {{url}}/api/v1/auth/logout
+Authorization: {{auth_token}}
+
+###
+# @name auth
+GET {{url}}/api/v1/auth
+#Authorization: {{auth_token}}

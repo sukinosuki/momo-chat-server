@@ -1,0 +1,59 @@
+server:
+  port: 8080
+spring:
+  main:
+    # TODO:
+    allow-bean-definition-overriding: true
+  application:
+    name: momotalk-like-chat
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/react_chat?useUnicode=true&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    name: react_chat
+    username: root
+    password: 233233
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    #    generate-ddl: false # 开启逆向工程,存在数据库的表, 然后数据库表可以生成实体类. (正向工程: 先存在实体类, 然后根据实体类, 生成底层的表) 开发阶段可以设置为true,
+    hibernate:
+      ddl-auto: update # create | create-drop | update | none | validate
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  # 自定义404(配置mvc和web)
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
+  # 参数和响应使用下划线
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  data:
+    redis:
+      host: localhost
+      port: 6379
+#  rabbitmq:
+#    host: 192.168.10.101
+#    port: 5672
+#    username: hanami
+#    password: 233233
+#    publisher-returns: true
+#    publisher-confirm-type: correlated
+#    template:
+#      mandatory: true
+#    listener:
+#      type: simple
+#      simple:
+#        acknowledge-mode: manual #消费者收到消息后的确认试，manual手动确认 node自动确认
+#        prefetch: 1 # 消费者预存1条数据到内存
+##        default-requeue-rejected: false # 决定被拒绝的消息是否重新入队。默认值为true, 需要手动basicNack时这些参数失效
+#        retry:
+#          enabled: true # 开启消费者，程序异常情况下会进行重试
+#          initial-interval: 2000 # 消费者重试间隔次数
+#          max-attempts: 3 # 重试次数
+
+jwt:
+  secret: hanami@233323332333233323332333233323332333
+  expiration: 86400000
+
+app-config:
+  use-rabbit: false
